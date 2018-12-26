@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="windows-1251" />
+		<title>Клиент</title>
+	</head>
+	<body>
+		<script>
+			function main() {
+				console.log("loaded");
+				var send_data   = document.getElementById("send_data");
+				var send_button = document.getElementById("send_button");
+
+				send_button.onclick = function () {
+					console.log(send_data.value);
+				};
+
+				var socket = new WebSocket("ws://localhost");
+
+				socket.onopen = function() {
+			  		console.log("Соединение установлено.");
+				};
+
+				socket.onclose = function(event) {
+					if (event.wasClean) {
+						console.log('Соединение закрыто чисто');
+					} else {
+						console.log('Обрыв соединения'); // например, "убит" процесс сервера
+					}
+					console.log('Код: ' + event.code + ' причина: ' + event.reason);
+				};
+
+				socket.onmessage = function(event) {
+					console.log("Получены данные " + event.data);
+				};
+
+				socket.onerror = function(error) {
+					alert("Ошибка " + error.message);
+				};
+
+			}
+			document.addEventListener("DOMContentLoaded", main);
+		</script>
+		<div>
+			<input id="send_data" type="text" />
+			<button id="send_button">Send</button>
+		</div>
+	</body>
+</html>
