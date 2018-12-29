@@ -17,12 +17,13 @@ public class server {
 			BufferedReader in         = new BufferedReader( new InputStreamReader( clienSocket.getInputStream()));
 		) {
 			String inputLine, outputLine;
-
+			int i = 0;
 			while ((inputLine = in.readLine()) != null) {
-				System.out.println(inputLine);
+				System.out.print(Integer.toString(i++) + " ");
+				System.out.println(inputLine);				
 			}
 		}
 
-		System.out.println("Hello World"); // prints Hello World
+		//System.out.println("Hello World"); // prints Hello World
    }
 }

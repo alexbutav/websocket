@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"print",
+				"println"
+			],
+			[
+				"serv",
+				"serverSocket"
+			],
+			[
 				"text",
 				"text_value"
 			],
@@ -255,7 +263,7 @@
 			"file": "server.java",
 			"settings":
 			{
-				"buffer_size": 231,
+				"buffer_size": 777,
 				"encoding": "Cyrillic (Windows 1251)",
 				"line_ending": "Windows"
 			}
@@ -264,7 +272,7 @@
 			"file": "client.html",
 			"settings":
 			{
-				"buffer_size": 558,
+				"buffer_size": 1171,
 				"encoding": "Cyrillic (Windows 1251)",
 				"line_ending": "Windows"
 			}
@@ -502,7 +510,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -511,15 +519,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 231,
+						"buffer_size": 777,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14,
-								14
+								223,
+								233
 							]
 						],
 						"settings":
@@ -530,7 +538,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -539,15 +547,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 558,
+						"buffer_size": 1171,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								430,
-								430
+								796,
+								796
 							]
 						],
 						"settings":
@@ -555,10 +563,10 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 19.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -627,7 +635,7 @@
 		[
 			[
 				"",
-				"C:\\Users\\a.butareev\\comptek.sublime\\project.sublime-project"
+				"C:\\Users\\a.butareev\\Documents\\SunlimeProject\\work.test.sublime\\work.test.sublime-project"
 			]
 		],
 		"width": 380.0
