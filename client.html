@@ -12,7 +12,8 @@
 				var send_button = document.getElementById("send_button");
 
 				send_button.onclick = function () {
-					console.log(send_data.value);
+					socket.send(send_data.value);
+					console.log("Sending " + send_data.value);
 				};
 
 				var socket = new WebSocket("ws://localhost");
