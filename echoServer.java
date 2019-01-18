@@ -21,6 +21,10 @@ public class echoServer {
 			}
 		}
 	}
+
+	public static void printByte(int b) {
+		System.out.println(String.format("%8s", Integer.toBinaryString(b)).replace(' ', '0'));
+	}
 }
 
 class ConnectionHandler implements Runnable {
@@ -62,7 +66,18 @@ class ConnectionHandler implements Runnable {
 
 				}
 				int d;
-				
+				d = in.read();
+				System.out.println("FIN = " +  ((d & 0b10000000) > 0 ? "true" : "false"));
+				System.out.println("RSV1 = " + ((d & 0b01000000) > 0 ? "true" : "false"));
+				System.out.println("RSV2 = " + ((d & 0b00100000) > 0 ? "true" : "false"));
+				System.out.println("RSV3 = " + ((d & 0b00010000) > 0 ? "true" : "false"));
+				System.out.print("Opcode = ");
+				echoServer.printByte(d & 0b00001111);
+				d = in.read();
+				System.out.println("Mask = " +  ((d & 0b10000000) > 0 ? "true" : "false"));
+				System.out.print("MsgLength = ");
+				echoServer.printByte(d & 0b00001111);
+
 				while((d = in.read()) != -1) {
 					System.out.println(Integer.toString(d));
 				}
@@ -76,6 +91,8 @@ class ConnectionHandler implements Runnable {
 		}
 	}
 }
+
+
 
 /*
 ExtendsThread et = new ExtendsThread();

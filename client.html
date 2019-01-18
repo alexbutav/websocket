@@ -7,38 +7,43 @@
 	<body>
 		<script>
 			function main() {
-				console.log("loaded");
 				var send_data   = document.getElementById("send_data");
 				var send_button = document.getElementById("send_button");
+				var output      = document.getElementById("output");
+				write("loaded");
 
 				send_button.onclick = function () {
 					socket.send(send_data.value);
-					console.log("Sending " + send_data.value);
+					write("Sending " + send_data.value);
 				};
 
 				var socket = new WebSocket("ws://localhost");
 
 				socket.onopen = function() {
-			  		console.log("Соединение установлено.");
+			  		write("Соединение установлено.");
 				};
 
 				socket.onclose = function(event) {
 					if (event.wasClean) {
-						console.log('Соединение закрыто чисто');
+						write('Соединение закрыто чисто');
 					} else {
-						console.log('Обрыв соединения'); // например, "убит" процесс сервера
+						write('Обрыв соединения'); // например, "убит" процесс сервера
 					}
-					console.log('Код: ' + event.code + ' причина: ' + event.reason);
+					write('Код: ' + event.code + ' причина: ' + event.reason);
 				};
 
 				socket.onmessage = function(event) {
-					console.log("Получены данные " + event.data);
+					write("Получены данные " + event.data);
 				};
 
 				socket.onerror = function(error) {
-					alert("Ошибка " + error.message);
+					console.log(error);
+					write("Ошибка " + error.message);
 				};
 
+				function write(str) {
+					output.appendChild(document.createTextNode(str + "\r\n"));
+				}
 			}
 			document.addEventListener("DOMContentLoaded", main);
 		</script>
@@ -46,5 +51,6 @@
 			<input id="send_data" type="text" />
 			<button id="send_button">Send</button>
 		</div>
+		<pre id="output"></pre>
 	</body>
 </html>
