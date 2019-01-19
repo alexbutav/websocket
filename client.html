@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="windows-1251" />
-		<title>Клиент</title>
+		<meta charset="utf-8" />
+		<title>РљР»РёРµРЅС‚</title>
 	</head>
 	<body>
 		<script>
@@ -11,31 +11,32 @@
 				var send_data   = document.getElementById("send_data");
 				var send_button = document.getElementById("send_button");
 
-				send_button.onclick = function () {
-					console.log(send_data.value);
-				};
-
 				var socket = new WebSocket("ws://localhost");
 
 				socket.onopen = function() {
-			  		console.log("Соединение установлено.");
+			  		console.log("РЎРѕРµРґРёРЅРµРЅРёРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ.");
 				};
 
 				socket.onclose = function(event) {
 					if (event.wasClean) {
-						console.log('Соединение закрыто чисто');
+						console.log('РЎРѕРµРґРёРЅРµРЅРёРµ Р·Р°РєСЂС‹С‚Рѕ С‡РёСЃС‚Рѕ');
 					} else {
-						console.log('Обрыв соединения'); // например, "убит" процесс сервера
+						console.log('РћР±СЂС‹РІ СЃРѕРµРґРёРЅРµРЅРёСЏ'); // РЅР°РїСЂРёРјРµСЂ, "СѓР±РёС‚" РїСЂРѕС†РµСЃСЃ СЃРµСЂРІРµСЂР°
 					}
-					console.log('Код: ' + event.code + ' причина: ' + event.reason);
+					console.log('РљРѕРґ: ' + event.code + ' РїСЂРёС‡РёРЅР°: ' + event.reason);
 				};
 
 				socket.onmessage = function(event) {
-					console.log("Получены данные " + event.data);
+					console.log("РџРѕР»СѓС‡РµРЅС‹ РґР°РЅРЅС‹Рµ " + event.data);
 				};
 
 				socket.onerror = function(error) {
-					alert("Ошибка " + error.message);
+					alert("РћС€РёР±РєР° " + error.message);
+				};
+
+				send_button.onclick = function () {
+					socket.send(send_data.value);
+					socket.send("\r\n");
 				};
 
 			}
