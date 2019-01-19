@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>–ö–ª–∏–µ–Ω—Ç</title>
+	</head>
+	<body>
+		<script>
+			function main() {
+				var send_data   = document.getElementById("send_data");
+				var send_button = document.getElementById("send_button");
+				var output      = document.getElementById("output");
+				write("loaded");
+
+<<<<<<< HEAD
+				var socket = new WebSocket("ws://localhost");
+
+				socket.onopen = function() {
+			  		console.log("–°–æ–µ–¥–∏–Ω–µ–Ω–∏–µ —É—Å—Ç–∞–Ω–æ–≤–ª–µ–Ω–æ.");
+=======
+				send_button.onclick = function () {
+					socket.send(send_data.value);
+					write("Sending " + send_data.value);
+				};
+
+				var socket = new WebSocket("ws://localhost");
+
+				socket.onopen = function() {
+			  		write("—ÓÂ‰ËÌÂÌËÂ ÛÒÚ‡ÌÓ‚ÎÂÌÓ.");
+>>>>>>> 0d1567604b751ffe96a0b0fcbfb9432d13f0c1be
+				};
+
+				socket.onclose = function(event) {
+					if (event.wasClean) {
+<<<<<<< HEAD
+						console.log('–°–æ–µ–¥–∏–Ω–µ–Ω–∏–µ –∑–∞–∫—Ä—ã—Ç–æ —á–∏—Å—Ç–æ');
+					} else {
+						console.log('–û–±—Ä—ã–≤ —Å–æ–µ–¥–∏–Ω–µ–Ω–∏—è'); // –Ω–∞–ø—Ä–∏–º–µ—Ä, "—É–±–∏—Ç" –ø—Ä–æ—Ü–µ—Å—Å —Å–µ—Ä–≤–µ—Ä–∞
+					}
+					console.log('–ö–æ–¥: ' + event.code + ' –ø—Ä–∏—á–∏–Ω–∞: ' + event.reason);
+				};
+
+				socket.onmessage = function(event) {
+					console.log("–ü–æ–ª—É—á–µ–Ω—ã –¥–∞–Ω–Ω—ã–µ " + event.data);
+				};
+
+				socket.onerror = function(error) {
+					alert("–û—à–∏–±–∫–∞ " + error.message);
+				};
+
+				send_button.onclick = function () {
+					socket.send(send_data.value);
+					socket.send("\r\n");
+=======
+						write('—ÓÂ‰ËÌÂÌËÂ Á‡Í˚ÚÓ ˜ËÒÚÓ');
+					} else {
+						write('Œ·˚‚ ÒÓÂ‰ËÌÂÌËˇ'); // Ì‡ÔËÏÂ, "Û·ËÚ" ÔÓˆÂÒÒ ÒÂ‚Â‡
+					}
+					write(' Ó‰: ' + event.code + ' ÔË˜ËÌ‡: ' + event.reason);
+				};
+
+				socket.onmessage = function(event) {
+					write("œÓÎÛ˜ÂÌ˚ ‰‡ÌÌ˚Â " + event.data);
+				};
+
+				socket.onerror = function(error) {
+					console.log(error);
+					write("Œ¯Ë·Í‡ " + error.message);
+>>>>>>> 0d1567604b751ffe96a0b0fcbfb9432d13f0c1be
+				};
+
+				function write(str) {
+					output.appendChild(document.createTextNode(str + "\r\n"));
+				}
+			}
+			document.addEventListener("DOMContentLoaded", main);
+		</script>
+		<div>
+			<input id="send_data" type="text" />
+			<button id="send_button">Send</button>
+		</div>
+		<pre id="output"></pre>
+	</body>
+</html>
