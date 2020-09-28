@@ -2,11 +2,6 @@ import java.net.*;
 import java.io.*;
 
 public class server {
-
-   /* This is my first java program.
-    * This will print 'Hello World' as the output
-    */
-
 	public static void main(String []args) throws IOException {
 		int portNumber = Integer.parseInt(args[0]);
 
