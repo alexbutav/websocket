@@ -1,0 +1,4 @@
+*.orig
+*.class
+*.sublime-project
+*.sublime-workspace

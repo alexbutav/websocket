@@ -1,49 +1,58 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="windows-1251" />
-		<title>Клиент</title>
+		<meta charset="utf-8" />
+		<title>РљР»РёРµРЅС‚</title>
 	</head>
 	<body>
 		<script>
 			function main() {
-				console.log("loaded");
 				var send_data   = document.getElementById("send_data");
 				var send_button = document.getElementById("send_button");
-
-				send_button.onclick = function () {
-					console.log(send_data.value);
-				};
+				var output      = document.getElementById("output");
+				write("loaded");
 
 				var socket = new WebSocket("ws://localhost");
 
+				send_button.onclick = function () {
+					socket.send(send_data.value);
+					write("Sending " + send_data.value);
+				};
+
+
 				socket.onopen = function() {
-			  		console.log("Соединение установлено.");
+			  		write("РЎРѕРµРґРёРЅРµРЅРёРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ.");
 				};
 
 				socket.onclose = function(event) {
 					if (event.wasClean) {
-						console.log('Соединение закрыто чисто');
+						write('РЎРѕРµРґРёРЅРµРЅРёРµ Р·Р°РєСЂС‹С‚Рѕ С‡РёСЃС‚Рѕ');
 					} else {
-						console.log('Обрыв соединения'); // например, "убит" процесс сервера
+						write('РћР±СЂС‹РІ СЃРѕРµРґРёРЅРµРЅРёСЏ'); // РЅР°РїСЂРёРјРµСЂ, "СѓР±РёС‚" РїСЂРѕС†РµСЃСЃ СЃРµСЂРІРµСЂР°
 					}
-					console.log('Код: ' + event.code + ' причина: ' + event.reason);
+					write('РљРѕРґ: ' + event.code + ' РїСЂРёС‡РёРЅР°: ' + event.reason);
 				};
 
 				socket.onmessage = function(event) {
-					console.log("Получены данные " + event.data);
+					write("РџРѕР»СѓС‡РµРЅС‹ РґР°РЅРЅС‹Рµ " + event.data);
 				};
 
 				socket.onerror = function(error) {
-					alert("Ошибка " + error.message);
+					console.log(error);
+					write("РћС€РёР±РєР° " + error.message);
 				};
 
+				function write(str) {
+					output.appendChild(document.createTextNode(str + "\r\n"));
+				}
 			}
+
 			document.addEventListener("DOMContentLoaded", main);
 		</script>
 		<div>
 			<input id="send_data" type="text" />
 			<button id="send_button">Send</button>
 		</div>
+		<pre id="output"></pre>
 	</body>
 </html>
